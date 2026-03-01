@@ -1,0 +1,47 @@
+{
+  "system_name": "AI-Powered Multi-Stage Skin Disease Detection System",
+  "version": "3.1",
+  "image_size": 224,
+
+  "stage1": {
+    "model_path": "models/stage1_full.keras",
+    "type": "binary",
+    "healthy_threshold": 0.35,
+    "description": "Initial screening model to detect healthy vs diseased skin."
+  },
+
+  "stage2": {
+    "model_path": "models/stage2_efficientnet.keras",
+    "type": "multiclass",
+    "classes": ["bcc", "mel", "nv"],
+
+    "confidence_threshold": 0.70,
+    "margin_threshold": 0.15,
+
+    "mel_priority_threshold": 0.55,
+
+    "risk_levels": {
+      "high": 0.80,
+      "moderate": 0.65,
+      "low": 0.50
+    },
+
+    "description": "Cancer detection model prioritizing melanoma sensitivity."
+  },
+
+  "stage3": {
+    "model_path": "models/stage3_general.keras",
+    "type": "multiclass",
+    "classes": ["Acne", "Psoriasis", "Eczema"],
+    "confidence_threshold": 0.50,
+    "description": "General dermatological condition classifier."
+  },
+
+  "warnings": {
+    "healthy": "✅ Skin appears healthy. If symptoms persist, consult a dermatologist.",
+    "cancer_high": "⚠️ High probability of skin cancer detected. Immediate medical consultation recommended.",
+    "cancer_moderate": "⚠️ Suspicious lesion detected. Dermatology consultation advised.",
+    "general": "🩺 Skin condition detected. Please consult a dermatologist for diagnosis and treatment.",
+    "disclaimer": "This AI system provides predictive analysis only and does not replace professional medical diagnosis."
+  }
+}
