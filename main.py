@@ -16,7 +16,7 @@ app = FastAPI(
 # ===============================
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://onelifeai.koyeb.app"],  # Use full https URL
+    allow_origins=["*"],  # Change to frontend URL in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
